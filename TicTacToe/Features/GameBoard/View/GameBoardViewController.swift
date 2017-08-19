@@ -12,6 +12,8 @@ class GameBoardViewController: UIViewController {
 
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     
+    var test: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,12 +44,23 @@ extension GameBoardViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TicTacToePositionCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TicTacToePositionCell", for: indexPath) as! TicTacToeCollectionViewCell
+        
+        if test {
+            cell.fillWith(label: "")
+            test = false
+        }
+        
         return cell
     }
 }
 
 extension GameBoardViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        test = true
+        collectionView.reloadItems(at: [indexPath])
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
