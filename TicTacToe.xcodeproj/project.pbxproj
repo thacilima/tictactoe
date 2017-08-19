@@ -12,6 +12,8 @@
 		06FAE2BF1F47ED32005EE5E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06FAE2BC1F47ED32005EE5E8 /* Assets.xcassets */; };
 		06FAE2C01F47ED32005EE5E8 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 06FAE2BD1F47ED32005EE5E8 /* Base.lproj */; };
 		06FAE2C11F47ED32005EE5E8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06FAE2BE1F47ED32005EE5E8 /* Info.plist */; };
+		06FAE2CA1F48A241005EE5E8 /* GameBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06FAE2C91F48A241005EE5E8 /* GameBoard.storyboard */; };
+		06FAE2CC1F48A25C005EE5E8 /* GameBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAE2CB1F48A25C005EE5E8 /* GameBoardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,8 @@
 		06FAE2BC1F47ED32005EE5E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06FAE2BD1F47ED32005EE5E8 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Base.lproj; sourceTree = "<group>"; };
 		06FAE2BE1F47ED32005EE5E8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06FAE2C91F48A241005EE5E8 /* GameBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GameBoard.storyboard; sourceTree = "<group>"; };
+		06FAE2CB1F48A25C005EE5E8 /* GameBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,8 @@
 		06FAE2C51F47EDED005EE5E8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				06FAE2C91F48A241005EE5E8 /* GameBoard.storyboard */,
+				06FAE2CB1F48A25C005EE5E8 /* GameBoardViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -225,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06FAE2C01F47ED32005EE5E8 /* Base.lproj in Resources */,
+				06FAE2CA1F48A241005EE5E8 /* GameBoard.storyboard in Resources */,
 				06FAE2BF1F47ED32005EE5E8 /* Assets.xcassets in Resources */,
 				06FAE2C11F47ED32005EE5E8 /* Info.plist in Resources */,
 			);
@@ -245,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06FAE29C1F47E740005EE5E8 /* AppDelegate.swift in Sources */,
+				06FAE2CC1F48A25C005EE5E8 /* GameBoardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +443,7 @@
 				06FAE2B71F47E741005EE5E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		06FAE2B81F47E741005EE5E8 /* Build configuration list for PBXNativeTarget "TicTacToeTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +452,7 @@
 				06FAE2BA1F47E741005EE5E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
