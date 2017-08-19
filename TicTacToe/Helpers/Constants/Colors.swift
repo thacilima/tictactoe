@@ -11,4 +11,6 @@ import UIKit
 struct Colors {
     static let mainGreen = UIColor(hex: 0x297B48)
     static let secondaryGreen = UIColor(hex: 0x7BB992)
+    
+    static let secondaryLightGreen = UIColor(hex: 0xF2FAA7)
 }
