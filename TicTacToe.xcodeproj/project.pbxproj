@@ -344,7 +344,7 @@
 				DEVELOPMENT_TEAM = SM8662EE7C;
 				INFOPLIST_FILE = TicTacToe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tl.TicTacToe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thacilima.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -357,7 +357,7 @@
 				DEVELOPMENT_TEAM = SM8662EE7C;
 				INFOPLIST_FILE = TicTacToe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tl.TicTacToe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thacilima.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
