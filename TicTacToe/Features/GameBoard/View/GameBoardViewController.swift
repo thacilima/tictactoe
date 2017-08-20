@@ -31,6 +31,11 @@ extension GameBoardViewController: GameBoardView {
         self.positions = positions
         collectionView.reloadData()
     }
+    
+    func updatePosition(position: Position, atIndex index: Int) {
+        positions[index] = position
+        collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+    }
 }
 
 extension GameBoardViewController: UICollectionViewDataSource {
@@ -60,7 +65,7 @@ extension GameBoardViewController: UICollectionViewDataSource {
 extension GameBoardViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.reloadItems(at: [indexPath])
+        presenter.performUserPlay(position: positions[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
