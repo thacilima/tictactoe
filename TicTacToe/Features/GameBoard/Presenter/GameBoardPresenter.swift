@@ -22,7 +22,7 @@ class GameBoardPresenter {
     
     func startGame() {
         gameBoard = judge.createGameBoard()
-        view?.setPositions(positions: gameBoard.getAllEmptyPositions())
+        view?.setPositions(positions: gameBoard.getEmptyPositions())
     }
     
     func performUserPlay(position: Position) {

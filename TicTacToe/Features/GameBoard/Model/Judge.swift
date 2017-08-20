@@ -43,7 +43,7 @@ class Judge {
     }
     
     func shouldKeepPlaying(onGameBoard gameBoard: GameBoard) -> Bool {
-        if gameBoard.getAllEmptyPositions().count > 0 {
+        if gameBoard.getEmptyPositions().count > 0 {
             return true
         }
         return false
