@@ -11,7 +11,6 @@
 		06FAE2B11F47E741005EE5E8 /* TicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAE2B01F47E741005EE5E8 /* TicTacToeTests.swift */; };
 		06FAE2BF1F47ED32005EE5E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06FAE2BC1F47ED32005EE5E8 /* Assets.xcassets */; };
 		06FAE2C01F47ED32005EE5E8 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 06FAE2BD1F47ED32005EE5E8 /* Base.lproj */; };
-		06FAE2C11F47ED32005EE5E8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06FAE2BE1F47ED32005EE5E8 /* Info.plist */; };
 		06FAE2CA1F48A241005EE5E8 /* GameBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06FAE2C91F48A241005EE5E8 /* GameBoard.storyboard */; };
 		06FAE2CC1F48A25C005EE5E8 /* GameBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAE2CB1F48A25C005EE5E8 /* GameBoardViewController.swift */; };
 		06FAE2CE1F48CF97005EE5E8 /* TicTacToeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAE2CD1F48CF97005EE5E8 /* TicTacToeCollectionViewCell.swift */; };
@@ -22,6 +21,8 @@
 		06FAE2DB1F490C5E005EE5E8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAE2DA1F490C5E005EE5E8 /* Player.swift */; };
 		06FAE2DF1F490CC6005EE5E8 /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAE2DE1F490CC6005EE5E8 /* Robot.swift */; };
 		06FAE2E31F490FD0005EE5E8 /* Judge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAE2E21F490FD0005EE5E8 /* Judge.swift */; };
+		06FAE2E51F4915A7005EE5E8 /* GameBoardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAE2E41F4915A7005EE5E8 /* GameBoardPresenter.swift */; };
+		06FAE2E71F49162C005EE5E8 /* GameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FAE2E61F49162C005EE5E8 /* GameBoardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		06FAE2DA1F490C5E005EE5E8 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		06FAE2DE1F490CC6005EE5E8 /* Robot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
 		06FAE2E21F490FD0005EE5E8 /* Judge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Judge.swift; sourceTree = "<group>"; };
+		06FAE2E41F4915A7005EE5E8 /* GameBoardPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardPresenter.swift; sourceTree = "<group>"; };
+		06FAE2E61F49162C005EE5E8 /* GameBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,7 @@
 				06FAE2C91F48A241005EE5E8 /* GameBoard.storyboard */,
 				06FAE2CB1F48A25C005EE5E8 /* GameBoardViewController.swift */,
 				06FAE2CD1F48CF97005EE5E8 /* TicTacToeCollectionViewCell.swift */,
+				06FAE2E61F49162C005EE5E8 /* GameBoardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -164,6 +168,7 @@
 		06FAE2C61F47EDF4005EE5E8 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				06FAE2E41F4915A7005EE5E8 /* GameBoardPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -281,7 +286,6 @@
 				06FAE2C01F47ED32005EE5E8 /* Base.lproj in Resources */,
 				06FAE2CA1F48A241005EE5E8 /* GameBoard.storyboard in Resources */,
 				06FAE2BF1F47ED32005EE5E8 /* Assets.xcassets in Resources */,
-				06FAE2C11F47ED32005EE5E8 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,10 +309,12 @@
 				06FAE2D51F48D3F3005EE5E8 /* Colors.swift in Sources */,
 				06FAE2D71F490877005EE5E8 /* Position.swift in Sources */,
 				06FAE2DB1F490C5E005EE5E8 /* Player.swift in Sources */,
+				06FAE2E51F4915A7005EE5E8 /* GameBoardPresenter.swift in Sources */,
 				06FAE2D21F48D1D6005EE5E8 /* UIColor+Hex.swift in Sources */,
 				06FAE2E31F490FD0005EE5E8 /* Judge.swift in Sources */,
 				06FAE2CC1F48A25C005EE5E8 /* GameBoardViewController.swift in Sources */,
 				06FAE2CE1F48CF97005EE5E8 /* TicTacToeCollectionViewCell.swift in Sources */,
+				06FAE2E71F49162C005EE5E8 /* GameBoardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

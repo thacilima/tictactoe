@@ -11,17 +11,8 @@ import UIKit
 class TicTacToeCollectionViewCell: UICollectionViewCell {
     
     fileprivate var sequenceOfLayersToAnimate: [CALayer] = []
-    
-    func fillWith(label: String) {
-        if label == "X" {
-            fillWithX()
-        }
-        else {
-            fillWithO()
-        }
-    }
-    
-    private func fillWithO() {
+
+    func fillWithO() {
         let size = bounds.size.width/2
         let origin = size/2
         
@@ -33,7 +24,7 @@ class TicTacToeCollectionViewCell: UICollectionViewCell {
         performNextAnimation()
     }
     
-    private func fillWithX() {
+    func fillWithX() {
         let margin = bounds.size.width/4
         let size = bounds.size.width/2
         

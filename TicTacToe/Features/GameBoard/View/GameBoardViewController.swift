@@ -12,44 +12,45 @@ class GameBoardViewController: UIViewController {
 
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
     
-    var test: Bool = false
+    fileprivate let presenter = GameBoardPresenter()
+    fileprivate var positions: [Position] = []
+    
+    fileprivate let gameBoardPadding: CGFloat = 6
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        presenter.attachView(view: self)
+        presenter.startGame()
     }
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+extension GameBoardViewController: GameBoardView {
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setPositions(positions: [Position]) {
+        self.positions = positions
+        collectionView.reloadData()
     }
-    */
-    
 }
 
 extension GameBoardViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return positions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TicTacToePositionCell", for: indexPath) as! TicTacToeCollectionViewCell
         
-        if test {
-            cell.fillWith(label: "")
-            test = false
+        let position = positions[indexPath.row]
+        
+        if let playerOwner = position.playerOwner {
+            switch playerOwner {
+            case .X:
+                cell.fillWithX()
+            default:
+                cell.fillWithO()
+            }
         }
         
         return cell
@@ -59,16 +60,14 @@ extension GameBoardViewController: UICollectionViewDataSource {
 extension GameBoardViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        test = true
         collectionView.reloadItems(at: [indexPath])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let padding: CGFloat = 6
         let itemsPerRow: CGFloat = 3
         
-        let paddingSpace = padding * (itemsPerRow-1)
+        let paddingSpace = gameBoardPadding * (itemsPerRow-1)
         let availableWidth = collectionView.frame.size.width - paddingSpace
         let size = availableWidth/itemsPerRow
         
@@ -76,10 +75,10 @@ extension GameBoardViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 6
+        return gameBoardPadding
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 6
+        return gameBoardPadding
     }
 }
