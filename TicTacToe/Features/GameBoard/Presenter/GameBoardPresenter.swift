@@ -26,13 +26,26 @@ class GameBoardPresenter {
     }
     
     func performUserPlay(position: Position) {
-        performPlay(position: position, label: userPlayer.label)
+        DispatchQueue.global().async { [weak self] in
+            if let this = self {
+                this.performPlayBackground(position: position, label: this.userPlayer.label)
+            }
+        }
     }
     
-    fileprivate func performPlay(position: Position, label: PlayerLabel) {
+    fileprivate func performPlayBackground(position: Position, label: PlayerLabel, delay: Bool = false) {
+        
         let positionUpdated = gameBoard.update(playerOwner: label, x: position.x, y: position.y)
         
-        view?.updatePosition(position: positionUpdated, atIndex: convertToIndex(x: position.x, y: position.y, totalPerLine: gameBoard.gameBoardSize))
+        var seconds = 0
+        if delay {
+            seconds = 1
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds)) { [weak self] in
+            if let this = self {
+                this.view?.updatePosition(position: positionUpdated, atIndex: this.convertToIndex(x: position.x, y: position.y, totalPerLine: this.gameBoard.gameBoardSize))
+            }
+        }
         
         if judge.isWinner(onGameBoard: gameBoard, lastPlayPosition: position) {
             //Show winner
@@ -44,12 +57,13 @@ class GameBoardPresenter {
             return
         }
         
-        performNextPlayIfNeeded(currentPlayPlayerLabel: label)
-    }
-    
-    fileprivate func performNextPlayIfNeeded(currentPlayPlayerLabel label: PlayerLabel) {
         if (label == userPlayer.label) {
-            performPlay(position: robot.play(onGameBoard: gameBoard), label: robot.label)
+            performPlayBackground(position: robot.play(onGameBoard: gameBoard), label: robot.label, delay: true)
+        }
+        else {
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.isCollectionUserInteractionEnabled(isEnabled: true)
+            }
         }
     }
     

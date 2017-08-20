@@ -27,6 +27,17 @@ class GameBoardViewController: UIViewController {
 
 extension GameBoardViewController: GameBoardView {
     
+    func isCollectionUserInteractionEnabled(isEnabled: Bool) {
+        collectionView.isUserInteractionEnabled = isEnabled
+        
+        if isEnabled {
+            self.view.backgroundColor = UIColor.gray
+        }
+        else {
+            self.view.backgroundColor = UIColor.red
+        }
+    }
+    
     func setPositions(positions: [Position]) {
         self.positions = positions
         collectionView.reloadData()
@@ -65,6 +76,7 @@ extension GameBoardViewController: UICollectionViewDataSource {
 extension GameBoardViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        isCollectionUserInteractionEnabled(isEnabled: false)
         presenter.performUserPlay(position: positions[indexPath.row])
     }
     
