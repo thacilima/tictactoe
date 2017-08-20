@@ -113,11 +113,13 @@ class Judge {
         }
         
         var i = 0
-        for j in gameBoardSize-1...0 {
+        var j = gameBoardSize-1
+        while j >= 0 {
             guard gameBoard[i][j].playerOwner == playerLabel else {
                 return false
             }
             i += 1
+            j -= 1
         }
         
         return true

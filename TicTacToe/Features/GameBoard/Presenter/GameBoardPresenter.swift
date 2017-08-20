@@ -31,8 +31,31 @@ class GameBoardPresenter {
     }
     
     func performUserPlay(position: Position) {
-        gameBoard[position.x][position.y].playerOwner = userPlayer.label
+        performPlay(position: position, label: userPlayer.label)
+    }
+    
+    fileprivate func performPlay(position: Position, label: PlayerLabel) {
+        gameBoard[position.x][position.y].playerOwner = label
+        
         view?.updatePosition(position: gameBoard[position.x][position.y], atIndex: convertToIndex(x: position.x, y: position.y, totalPerLine: gameBoard.count))
+        
+        if judge.isWinner(onGameBoard: gameBoard, lastPlayPosition: position) {
+            //Show winner
+            return
+        }
+        
+        guard judge.shouldKeepPlaying(onGameBoard: gameBoard) else {
+            //Show end
+            return
+        }
+        
+        performNextPlayIfNeeded(currentPlayPlayerLabel: label)
+    }
+    
+    fileprivate func performNextPlayIfNeeded(currentPlayPlayerLabel label: PlayerLabel) {
+        if (label == userPlayer.label) {
+            performPlay(position: robot.play(onGameBoard: gameBoard), label: robot.label)
+        }
     }
     
     fileprivate func convertToIndex(x: Int, y: Int, totalPerLine: Int) -> Int {
