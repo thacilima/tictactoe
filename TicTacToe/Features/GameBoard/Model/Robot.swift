@@ -38,12 +38,12 @@ class Robot: Player {
     
     func playLookingForCheckMateAndCheckPositions(onGameBoard gameBoard: GameBoard) -> Position {
         
-        if let defenseCheckmatePosition = findDefenseCheckmatePosition(onGameBoard: gameBoard) {
-            return defenseCheckmatePosition
-        }
-        
         if let attackCheckmatePosition = findAttackCheckmatePosition(onGameBoard: gameBoard) {
             return attackCheckmatePosition
+        }
+        
+        if let defenseCheckmatePosition = findDefenseCheckmatePosition(onGameBoard: gameBoard) {
+            return defenseCheckmatePosition
         }
         
         if let attackCheckPosition = findAttackCheckPosition(onGameBoard: gameBoard) {
