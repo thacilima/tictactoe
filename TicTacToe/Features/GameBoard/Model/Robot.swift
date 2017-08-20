@@ -33,43 +33,81 @@ class Robot: Player {
     }
     
     func playLookingForThreat(onGameBoard gameBoard: GameBoard) -> Position {
-        let opponentPositions = gameBoard.getOpponentPositions(forPlayer: label)
-        let emptyPositions = gameBoard.getEmptyPositions()
         
-        //line threat
-        for line in 0..<gameBoard.gameBoardSize {
-            if opponentPositions.filter({ $0.x == line }).count == gameBoard.gameBoardSize-1 {
-                if let threatPosition = emptyPositions.filter({ $0.x == line }).first {
-                    return threatPosition
-                }
-            }
+        if let defensePosition = findDefense(onGameBoard: gameBoard) {
+            return defensePosition
         }
         
-        //colunm threat
-        for colunm in 0..<gameBoard.gameBoardSize {
-            if opponentPositions.filter({ $0.y == colunm }).count == gameBoard.gameBoardSize-1 {
-                if let threatPosition = emptyPositions.filter({ $0.y == colunm }).first {
-                    return threatPosition
-                }
-            }
+        if let attachPosition = findAttach(onGameBoard: gameBoard) {
+            return attachPosition
         }
-        
-        //main diagonal threat
-        if opponentPositions.filter({ $0.x == $0.y }).count == gameBoard.gameBoardSize-1 {
-            if let threatPosition = emptyPositions.filter({ $0.x == $0.y }).first {
-                return threatPosition
-            }
-        }
-        
-        //secondary diagonal threat
-        if opponentPositions.filter({ $0.x + $0.y == gameBoard.gameBoardSize-1 }).count == gameBoard.gameBoardSize-1 {
-            if let threatPosition = emptyPositions.filter({ $0.x + $0.y == gameBoard.gameBoardSize-1 }).first {
-                return threatPosition
-            }
-        }
-        
-        //line attack
         
         return playRandom(onGameBoard: gameBoard)
+    }
+    
+    private func findAttach(onGameBoard gameBoard: GameBoard) -> Position? {
+        let myPositions = gameBoard.getPositions(forPlayer: label)
+        return findThreat(onGameBoard: gameBoard, positionsToSearch: myPositions)
+    }
+    
+    private func findDefense(onGameBoard gameBoard: GameBoard) -> Position? {
+        let opponentPositions = gameBoard.getOpponentPositions(forPlayer: label)
+        return findThreat(onGameBoard: gameBoard, positionsToSearch: opponentPositions)
+    }
+    
+    private func findThreat(onGameBoard gameBoard: GameBoard, positionsToSearch: [Position]) -> Position? {
+
+        if let lineThreat = findLineThreat(onGameBoard: gameBoard, positionsToSearch: positionsToSearch) {
+            return lineThreat
+        }
+        if let columnThreat = findColunmThreat(onGameBoard: gameBoard, positionsToSearch: positionsToSearch) {
+            return columnThreat
+        }
+        if let mainDiagonalThreat = findMainDiagonalThreat(onGameBoard: gameBoard, positionsToSearch: positionsToSearch) {
+            return mainDiagonalThreat
+        }
+        if let secondaryDiagonalThreat = findSecondaryDiagonalThreat(onGameBoard: gameBoard, positionsToSearch: positionsToSearch) {
+            return secondaryDiagonalThreat
+        }
+        
+        return nil
+    }
+    
+    private func findLineThreat(onGameBoard gameBoard: GameBoard, positionsToSearch: [Position]) -> Position? {
+        for line in 0..<gameBoard.gameBoardSize {
+            if let threatPosition = findThreat(onGameBoard: gameBoard, positionsToSearch: positionsToSearch, threatCondition: { $0.x == line }) {
+                return threatPosition
+            }
+        }
+        return nil
+    }
+    
+    private func findColunmThreat(onGameBoard gameBoard: GameBoard, positionsToSearch: [Position]) -> Position? {
+        for colunm in 0..<gameBoard.gameBoardSize {
+            if let threatPosition = findThreat(onGameBoard: gameBoard, positionsToSearch: positionsToSearch, threatCondition: { $0.y == colunm }) {
+                return threatPosition
+            }
+        }
+        return nil
+    }
+    
+    private func findMainDiagonalThreat(onGameBoard gameBoard: GameBoard, positionsToSearch: [Position]) -> Position? {
+        return findThreat(onGameBoard: gameBoard, positionsToSearch: positionsToSearch, threatCondition: { $0.x == $0.y })
+    }
+    
+    private func findSecondaryDiagonalThreat(onGameBoard gameBoard: GameBoard, positionsToSearch: [Position]) -> Position? {
+        return findThreat(onGameBoard: gameBoard, positionsToSearch: positionsToSearch, threatCondition: { $0.x + $0.y == gameBoard.gameBoardSize - 1 })
+    }
+    
+    private func findThreat(onGameBoard gameBoard: GameBoard, positionsToSearch: [Position], threatCondition: (Position) -> Bool) -> Position? {
+        let emptyPositions = gameBoard.getEmptyPositions()
+        
+        if positionsToSearch.filter(threatCondition).count == gameBoard.gameBoardSize-1 {
+            if let threatPosition = emptyPositions.filter(threatCondition).first {
+                return threatPosition
+            }
+        }
+        
+        return nil
     }
 }
