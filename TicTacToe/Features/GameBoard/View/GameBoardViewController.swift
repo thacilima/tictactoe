@@ -39,6 +39,7 @@ class GameBoardViewController: UIViewController {
 }
 
 extension GameBoardViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 9
     }
