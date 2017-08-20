@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias GameBoard = [[Position]]
-
 class Position {
     var playerOwner: PlayerLabel?
     var x: Int

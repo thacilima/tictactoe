@@ -11,15 +11,23 @@ import Foundation
 class Robot: Player {
     
     func play(onGameBoard gameBoard: GameBoard) -> Position {
-        for line in gameBoard {
-            for position in line {
-                if position.playerOwner == nil {
-                    position.playerOwner = self.label
-                    return position
-                }
-            }
+        return playRandom(onGameBoard: gameBoard)
+    }
+    
+    func playOnFirstEmptyPosition(onGameBoard gameBoard: GameBoard) -> Position {
+        let emptyPositions = gameBoard.getAllEmptyPositions()
+        
+        guard emptyPositions.count > 0 else {
+            fatalError()
         }
         
-        fatalError()
+        return emptyPositions[0]
+    }
+    
+    func playRandom(onGameBoard gameBoard: GameBoard) -> Position {
+        let emptyPositions = gameBoard.getAllEmptyPositions()
+        let randomIndex = Int(arc4random_uniform(UInt32(emptyPositions.count)))
+        
+        return emptyPositions[randomIndex]
     }
 }

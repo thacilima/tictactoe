@@ -14,7 +14,7 @@ class GameBoardPresenter {
     private let userPlayer = Player(label: .X)
     private let robot = Robot(label: .O)
     private let judge = Judge()
-    private var gameBoard: GameBoard = []
+    private var gameBoard: GameBoard!
     
     func attachView(view: GameBoardView) {
         self.view = view
@@ -22,12 +22,7 @@ class GameBoardPresenter {
     
     func startGame() {
         gameBoard = judge.createGameBoard()
-        
-        var positions: [Position] = []
-        for positionsInLine in gameBoard {
-            positions.append(contentsOf: positionsInLine)
-        }
-        view?.setPositions(positions: positions)
+        view?.setPositions(positions: gameBoard.getAllEmptyPositions())
     }
     
     func performUserPlay(position: Position) {
@@ -35,9 +30,9 @@ class GameBoardPresenter {
     }
     
     fileprivate func performPlay(position: Position, label: PlayerLabel) {
-        gameBoard[position.x][position.y].playerOwner = label
+        let positionUpdated = gameBoard.update(playerOwner: label, x: position.x, y: position.y)
         
-        view?.updatePosition(position: gameBoard[position.x][position.y], atIndex: convertToIndex(x: position.x, y: position.y, totalPerLine: gameBoard.count))
+        view?.updatePosition(position: positionUpdated, atIndex: convertToIndex(x: position.x, y: position.y, totalPerLine: gameBoard.gameBoardSize))
         
         if judge.isWinner(onGameBoard: gameBoard, lastPlayPosition: position) {
             //Show winner

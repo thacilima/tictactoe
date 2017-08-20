@@ -10,19 +10,18 @@ import Foundation
 
 class Judge {
     
-    private let gameBoardSize = 3
-    
     func createGameBoard() -> GameBoard {
-        var gameBoard: GameBoard = []
+        let gameBoardSize = 3
+        var gameBoardPositions: GameBoardPositions = []
         for line in 0..<gameBoardSize {
             var lineArray: [Position] = []
             for column in 0..<gameBoardSize {
                 let position = Position(x: line, y: column)
                 lineArray.append(position)
             }
-            gameBoard.append(lineArray)
+            gameBoardPositions.append(lineArray)
         }
-        return gameBoard
+        return GameBoard(gameBoardSize: gameBoardSize, positions: gameBoardPositions)
     }
     
     func isWinner(onGameBoard gameBoard: GameBoard, lastPlayPosition: Position) -> Bool {
@@ -44,24 +43,20 @@ class Judge {
     }
     
     func shouldKeepPlaying(onGameBoard gameBoard: GameBoard) -> Bool {
-        for line in 0..<gameBoard.count {
-            for column in 0..<gameBoard[line].count {
-                let position = gameBoard[line][column]
-                if position.playerOwner == nil {
-                    return true
-                }
-            }
+        if gameBoard.getAllEmptyPositions().count > 0 {
+            return true
         }
         return false
     }
     
     private func isColunmWinner(onGameBoard gameBoard: GameBoard, lastPlayPosition: Position) -> Bool {
         
+        let gameBoardPositions = gameBoard.getAllPositions()
         let playerLabel = lastPlayPosition.playerOwner
         let playerColunm = lastPlayPosition.y
         
-        for line in 0..<gameBoardSize {
-            guard gameBoard[line][playerColunm].playerOwner == playerLabel else {
+        for line in 0..<gameBoard.gameBoardSize {
+            guard gameBoardPositions[line][playerColunm].playerOwner == playerLabel else {
                 return false
             }
         }
@@ -71,11 +66,12 @@ class Judge {
     
     private func isLineWinner(onGameBoard gameBoard: GameBoard, lastPlayPosition: Position) -> Bool {
         
+        let gameBoardPositions = gameBoard.getAllPositions()
         let playerLabel = lastPlayPosition.playerOwner
         let playerLine = lastPlayPosition.x
         
-        for column in 0..<gameBoardSize {
-            guard gameBoard[playerLine][column].playerOwner == playerLabel else {
+        for column in 0..<gameBoard.gameBoardSize {
+            guard gameBoardPositions[playerLine][column].playerOwner == playerLabel else {
                 return false
             }
         }
@@ -85,16 +81,16 @@ class Judge {
     
     private func isMainDiagonalWinner(onGameBoard gameBoard: GameBoard, lastPlayPosition: Position) -> Bool {
         
-        let playerLabel = lastPlayPosition.playerOwner
         let playerLine = lastPlayPosition.x
         let playerColunm = lastPlayPosition.y
-        
         guard playerLine == playerColunm else {
             return false
         }
         
-        for index in 0..<gameBoardSize {
-            guard gameBoard[index][index].playerOwner == playerLabel else {
+        let playerLabel = lastPlayPosition.playerOwner
+        let gameBoardPositions = gameBoard.getAllPositions()
+        for index in 0..<gameBoard.gameBoardSize {
+            guard gameBoardPositions[index][index].playerOwner == playerLabel else {
                 return false
             }
         }
@@ -104,18 +100,18 @@ class Judge {
     
     private func isSecondaryDiagonalWinner(onGameBoard gameBoard: GameBoard, lastPlayPosition: Position) -> Bool {
         
-        let playerLabel = lastPlayPosition.playerOwner
         let playerLine = lastPlayPosition.x
         let playerColunm = lastPlayPosition.y
-        
-        guard playerLine+playerColunm == gameBoardSize-1 else {
+        guard playerLine+playerColunm == gameBoard.gameBoardSize-1 else {
             return false
         }
         
+        let playerLabel = lastPlayPosition.playerOwner
+        let gameBoardPositions = gameBoard.getAllPositions()
         var i = 0
-        var j = gameBoardSize-1
+        var j = gameBoard.gameBoardSize-1
         while j >= 0 {
-            guard gameBoard[i][j].playerOwner == playerLabel else {
+            guard gameBoardPositions[i][j].playerOwner == playerLabel else {
                 return false
             }
             i += 1
