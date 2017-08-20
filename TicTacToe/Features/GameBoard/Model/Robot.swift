@@ -54,6 +54,22 @@ class Robot: Player {
             }
         }
         
+        //main diagonal threat
+        if opponentPositions.filter({ $0.x == $0.y }).count == gameBoard.gameBoardSize-1 {
+            if let threatPosition = emptyPositions.filter({ $0.x == $0.y }).first {
+                return threatPosition
+            }
+        }
+        
+        //secondary diagonal threat
+        if opponentPositions.filter({ $0.x + $0.y == gameBoard.gameBoardSize-1 }).count == gameBoard.gameBoardSize-1 {
+            if let threatPosition = emptyPositions.filter({ $0.x + $0.y == gameBoard.gameBoardSize-1 }).first {
+                return threatPosition
+            }
+        }
+        
+        //line attack
+        
         return playRandom(onGameBoard: gameBoard)
     }
 }
