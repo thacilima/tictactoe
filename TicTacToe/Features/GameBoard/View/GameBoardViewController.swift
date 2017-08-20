@@ -23,6 +23,10 @@ class GameBoardViewController: UIViewController {
         presenter.attachView(view: self)
         presenter.startGame()
     }
+    
+    @IBAction func restartGame(_ sender: Any) {
+        presenter.startGame()
+    }
 }
 
 extension GameBoardViewController: GameBoardView {
@@ -67,6 +71,9 @@ extension GameBoardViewController: UICollectionViewDataSource {
             default:
                 cell.fillWithO()
             }
+        }
+        else {
+            cell.clear()
         }
         
         return cell

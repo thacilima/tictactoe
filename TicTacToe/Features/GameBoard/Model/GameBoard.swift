@@ -23,6 +23,7 @@ class GameBoard {
     init(gameBoardSize: Int, positions: [[Position]]) {
         self.gameBoardSize = gameBoardSize
         self.positions = positions
+        
         for linePositions in positions {
             emptyPositions.append(contentsOf: linePositions)
         }

@@ -50,6 +50,18 @@
                                     <outlet property="delegate" destination="Pjl-rz-A6Q" id="HlN-1T-2hs"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8e-wI-26V">
+                                <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.16078431372549018" green="0.4823529411764706" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="22"/>
+                                <state key="normal" title="reiniciar jogo">
+                                    <color key="titleColor" red="0.4823529411764706" green="0.72549019607843135" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="restartGame:" destination="Pjl-rz-A6Q" eventType="touchUpInside" id="7FY-49-xB7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.56862745098039214" green="0.18823529411764706" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
