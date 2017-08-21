@@ -24,12 +24,15 @@ class GameBoardPresenter {
         gameBoard = judge.createGameBoard()
         view?.setPositions(positions: gameBoard.getEmptyPositions())
         view?.isCollectionUserInteractionEnabled(isEnabled: true)
+        view?.update(turnLabel: Strings.startGame)
+        view?.update(winnerLabel: "")
     }
     
     func performUserPlay(position: Position) {
         if gameBoard.getAllPositions()[position.x][position.y].playerOwner == nil {
             
             view?.isCollectionUserInteractionEnabled(isEnabled: false)
+            view?.update(turnLabel: "")
             
             DispatchQueue.global().async { [weak self] in
                 if let this = self {
@@ -45,21 +48,36 @@ class GameBoardPresenter {
         
         DispatchQueue.main.sync { [weak self] in
             if let this = self {
-                Timer.scheduledTimer(timeInterval: (delay ? 0.6 : 0), target: this, selector: #selector(this.updatePositionOnView(timer:)), userInfo: positionUpdated, repeats: false)
+                this.view?.updatePosition(position: positionUpdated, atIndex: this.convertToIndex(x: positionUpdated.x, y: positionUpdated.y, totalPerLine: this.gameBoard.gameBoardSize))
             }
         }
         
+        usleep(200000)
         if judge.isWinner(onGameBoard: gameBoard, lastPlayPosition: position) {
-            //Show winner
+            var winnerLabel = ""
+            switch position.playerOwner! {
+            case .X:
+                winnerLabel = Strings.xWon
+            default:
+                winnerLabel = Strings.oWon
+            }
+            DispatchQueue.main.sync { [weak self] in
+                self?.view?.update(turnLabel: Strings.endGame)
+                self?.view?.update(winnerLabel: winnerLabel)
+            }
             return
         }
         
         guard judge.shouldKeepPlaying(onGameBoard: gameBoard) else {
-            //Show end
+            DispatchQueue.main.sync { [weak self] in
+                self?.view?.update(turnLabel: Strings.endGame)
+                self?.view?.update(winnerLabel: Strings.draw)
+            }
             return
         }
         
         if (label == userPlayer.label) {
+            usleep(200000)
             performPlayBackground(position: robot.play(onGameBoard: gameBoard), label: robot.label, delay: true)
         }
         else {
@@ -67,11 +85,6 @@ class GameBoardPresenter {
                 self?.view?.isCollectionUserInteractionEnabled(isEnabled: true)
             }
         }
-    }
-    
-    @objc fileprivate func updatePositionOnView(timer: Timer) {
-        let positionUpdated: Position = timer.userInfo as! Position
-        view?.updatePosition(position: positionUpdated, atIndex: convertToIndex(x: positionUpdated.x, y: positionUpdated.y, totalPerLine: gameBoard.gameBoardSize))
     }
     
     fileprivate func convertToIndex(x: Int, y: Int, totalPerLine: Int) -> Int {

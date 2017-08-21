@@ -12,4 +12,6 @@ protocol GameBoardView: class {
     func setPositions(positions: [Position])
     func updatePosition(position: Position, atIndex index: Int)
     func isCollectionUserInteractionEnabled(isEnabled: Bool)
+    func update(turnLabel: String)
+    func update(winnerLabel: String)
 }

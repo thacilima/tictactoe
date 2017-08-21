@@ -11,6 +11,8 @@ import UIKit
 class GameBoardViewController: UIViewController {
 
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
+    @IBOutlet fileprivate weak var winnerLabel: UILabel!
+    @IBOutlet fileprivate weak var turnLabel: UILabel!
     
     fileprivate let presenter = GameBoardPresenter()
     fileprivate var positions: [Position] = []
@@ -43,6 +45,14 @@ extension GameBoardViewController: GameBoardView {
     func updatePosition(position: Position, atIndex index: Int) {
         positions[index] = position
         collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+    }
+    
+    func update(turnLabel: String) {
+        self.turnLabel.text = turnLabel
+    }
+    
+    func update(winnerLabel: String) {
+        self.winnerLabel.text = winnerLabel
     }
 }
 
