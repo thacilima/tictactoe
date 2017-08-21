@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Pjl-rz-A6Q">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Game Board View Controller-->
+        <scene sceneID="ERP-hX-GSm">
+            <objects>
+                <viewController id="Pjl-rz-A6Q" customClass="GameBoardViewController" customModule="TicTacToe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jvt-VJ-luR"/>
+                        <viewControllerLayoutGuide type="bottom" id="rHB-7m-JbF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AVV-fb-hqa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nbo-NU-3yc">
+                                <rect key="frame" x="24" y="165" width="366" height="366"/>
+                                <color key="backgroundColor" red="0.85098039215686272" green="0.56862745098039214" blue="0.69411764705882351" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="nbo-NU-3yc" secondAttribute="height" multiplier="1:1" id="720-Hn-o5j"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tMs-oP-JQP">
+                                    <size key="itemSize" width="91" height="91"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TicTacToePositionCell" id="Nci-om-7vN" customClass="TicTacToeCollectionViewCell" customModule="TicTacToe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="91" height="91"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="91" height="91"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.56862745100000001" green="0.18823529410000001" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Pjl-rz-A6Q" id="nPx-A0-PYy"/>
+                                    <outlet property="delegate" destination="Pjl-rz-A6Q" id="HlN-1T-2hs"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8e-wI-26V">
+                                <rect key="frame" x="0.0" y="691" width="414" height="45"/>
+                                <color key="backgroundColor" red="0.16078431372549018" green="0.4823529411764706" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="tei-Kb-OgS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="22"/>
+                                <state key="normal" title="reiniciar jogo">
+                                    <color key="titleColor" red="0.4823529411764706" green="0.72549019607843135" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="restartGame:" destination="Pjl-rz-A6Q" eventType="touchUpInside" id="7FY-49-xB7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✕ ganhou!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xrK-Ez-eod">
+                                <rect key="frame" x="36" y="555" width="342" height="51"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="45"/>
+                                <color key="textColor" red="0.85098039215686272" green="0.56862745098039214" blue="0.69411764705882351" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vez de ◯" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4i-76-0Vp">
+                                <rect key="frame" x="159" y="109" width="96.333333333333343" height="24"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="20"/>
+                                <color key="textColor" red="0.85098039219999999" green="0.56862745100000001" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.56862745098039214" green="0.18823529411764706" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="xrK-Ez-eod" secondAttribute="trailing" constant="16" id="29W-fl-IyC"/>
+                            <constraint firstItem="nbo-NU-3yc" firstAttribute="leading" secondItem="AVV-fb-hqa" secondAttribute="leading" constant="24" id="4tw-qz-vX1"/>
+                            <constraint firstAttribute="trailing" secondItem="nbo-NU-3yc" secondAttribute="trailing" constant="24" id="G5y-jX-Pvt"/>
+                            <constraint firstItem="nbo-NU-3yc" firstAttribute="centerY" secondItem="AVV-fb-hqa" secondAttribute="centerY" constant="-20" id="Rfh-EU-woN"/>
+                            <constraint firstItem="xrK-Ez-eod" firstAttribute="top" secondItem="nbo-NU-3yc" secondAttribute="bottom" constant="24" id="T7F-xi-iVa"/>
+                            <constraint firstItem="rHB-7m-JbF" firstAttribute="top" secondItem="G8e-wI-26V" secondAttribute="bottom" id="by7-cg-yS7"/>
+                            <constraint firstItem="xrK-Ez-eod" firstAttribute="leading" secondItem="AVV-fb-hqa" secondAttribute="leadingMargin" constant="16" id="dwx-B9-sfX"/>
+                            <constraint firstItem="nbo-NU-3yc" firstAttribute="top" secondItem="B4i-76-0Vp" secondAttribute="bottom" constant="32" id="jT4-Xz-e3v"/>
+                            <constraint firstAttribute="trailing" secondItem="G8e-wI-26V" secondAttribute="trailing" id="qTB-u1-ent"/>
+                            <constraint firstItem="G8e-wI-26V" firstAttribute="leading" secondItem="AVV-fb-hqa" secondAttribute="leading" id="w7t-Sc-2Vk"/>
+                            <constraint firstItem="B4i-76-0Vp" firstAttribute="centerX" secondItem="nbo-NU-3yc" secondAttribute="centerX" id="zU7-d5-TwS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="nbo-NU-3yc" id="5fY-WY-Uwj"/>
+                        <outlet property="turnLabel" destination="B4i-76-0Vp" id="TxS-hX-hSc"/>
+                        <outlet property="winnerLabel" destination="xrK-Ez-eod" id="1Kf-Ky-igF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xqV-bF-C73" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="172" y="160.56971514242881"/>
+        </scene>
+    </scenes>
+</document>
