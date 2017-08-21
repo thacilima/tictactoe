@@ -23,12 +23,18 @@ class GameBoardPresenter {
     func startGame() {
         gameBoard = judge.createGameBoard()
         view?.setPositions(positions: gameBoard.getEmptyPositions())
+        view?.isCollectionUserInteractionEnabled(isEnabled: true)
     }
     
     func performUserPlay(position: Position) {
-        DispatchQueue.global().async { [weak self] in
-            if let this = self {
-                this.performPlayBackground(position: position, label: this.userPlayer.label)
+        if gameBoard.getAllPositions()[position.x][position.y].playerOwner == nil {
+            
+            view?.isCollectionUserInteractionEnabled(isEnabled: false)
+            
+            DispatchQueue.global().async { [weak self] in
+                if let this = self {
+                    this.performPlayBackground(position: position, label: this.userPlayer.label)
+                }
             }
         }
     }
@@ -37,13 +43,9 @@ class GameBoardPresenter {
         
         let positionUpdated = gameBoard.update(playerOwner: label, x: position.x, y: position.y)
         
-        var seconds = 0
-        if delay {
-            seconds = 1
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds)) { [weak self] in
+        DispatchQueue.main.sync { [weak self] in
             if let this = self {
-                this.view?.updatePosition(position: positionUpdated, atIndex: this.convertToIndex(x: position.x, y: position.y, totalPerLine: this.gameBoard.gameBoardSize))
+                Timer.scheduledTimer(timeInterval: (delay ? 0.6 : 0), target: this, selector: #selector(this.updatePositionOnView(timer:)), userInfo: positionUpdated, repeats: false)
             }
         }
         
@@ -61,10 +63,15 @@ class GameBoardPresenter {
             performPlayBackground(position: robot.play(onGameBoard: gameBoard), label: robot.label, delay: true)
         }
         else {
-            DispatchQueue.main.async { [weak self] in
+            DispatchQueue.main.sync { [weak self] in
                 self?.view?.isCollectionUserInteractionEnabled(isEnabled: true)
             }
         }
+    }
+    
+    @objc fileprivate func updatePositionOnView(timer: Timer) {
+        let positionUpdated: Position = timer.userInfo as! Position
+        view?.updatePosition(position: positionUpdated, atIndex: convertToIndex(x: positionUpdated.x, y: positionUpdated.y, totalPerLine: gameBoard.gameBoardSize))
     }
     
     fileprivate func convertToIndex(x: Int, y: Int, totalPerLine: Int) -> Int {

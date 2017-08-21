@@ -59,7 +59,7 @@ class TicTacToeCollectionViewCell: UICollectionViewCell {
         layer.addSublayer(pathLayer)
         
         let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        pathAnimation.duration = 0.3
+        pathAnimation.duration = 0.2
         pathAnimation.fromValue = 0
         pathAnimation.toValue = 1
         pathAnimation.delegate = self
