@@ -9,6 +9,9 @@
 import UIKit
 
 struct Colors {
+    
+    // Palleton url: http://paletton.com/#uid=35i0u0kllllaFw0g0qFqFg0w0aF
+    
     static let mainGreen = UIColor(hex: 0x297B48)
     static let secondaryGreen = UIColor(hex: 0x7BB992)
     
