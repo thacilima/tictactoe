@@ -255,13 +255,13 @@
 					06FAE2971F47E740005EE5E8 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = SM8662EE7C;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1150;
 						ProvisioningStyle = Automatic;
 					};
 					06FAE2AB1F47E741005EE5E8 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = SM8662EE7C;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1150;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 06FAE2971F47E740005EE5E8;
 					};
@@ -272,6 +272,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -451,7 +452,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.thacilima.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -466,7 +467,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.thacilima.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -481,7 +482,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tl.TicTacToeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TicTacToe.app/TicTacToe";
 			};
 			name = Debug;
@@ -497,7 +498,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tl.TicTacToeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TicTacToe.app/TicTacToe";
 			};
 			name = Release;
